@@ -1,1 +1,33 @@
-<p>graphic1 works!</p>
+
+<div class="row">
+    <div class="col-6">
+        <app-doughnut
+            [title]="'Social Media'"
+            [categories]="labels1"
+            [dataChart]="data1"
+        ></app-doughnut>
+    </div>
+    <div class="col-6">
+        <app-doughnut
+            [title]="'Sport'"
+            [categories]="labels2"
+            [dataChart]="data2"
+        ></app-doughnut>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <app-doughnut
+            [title]="'Tech'"
+            [categories]="labels3"
+            [dataChart]="data3"
+        ></app-doughnut>
+    </div>
+    <div class="col-6">
+        <app-doughnut
+            [title]="'Smartphone'"
+            [categories]="labels4"
+            [dataChart]="data4"
+        ></app-doughnut>
+    </div>
+</div>

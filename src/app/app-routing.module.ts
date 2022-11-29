@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { Graphic1Component } from './pages/graphic1/graphic1.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ProgressComponent } from './pages/progress/progress.component';
-import { PagesModule } from './pages/pages.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     loadChildren: () => import('./pages/pages.module').then( m => m.PagesModule )
   },
   {
