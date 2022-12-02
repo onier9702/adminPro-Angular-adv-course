@@ -11,6 +11,7 @@ import { Graphic1Component } from './graphic1/graphic1.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 
@@ -21,6 +22,7 @@ import { ComponentsModule } from '../components/components.module';
     Graphic1Component,
     NotFoundComponent,
     PagesComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     CommonModule,
