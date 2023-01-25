@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PagesRoutingRoutingModule } from './pages-routing-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -12,6 +12,7 @@ import { NotFoundComponent } from '../not-found/not-found.component';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { ProfileUserComponent } from './profile-user/profile-user.component';
 
 
 
@@ -23,13 +24,15 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     NotFoundComponent,
     PagesComponent,
     AccountSettingsComponent,
+    ProfileUserComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     PagesRoutingRoutingModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }

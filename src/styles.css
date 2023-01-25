@@ -7,6 +7,12 @@
     animation-fill-mode:both
 }
 
+.google-sign-in {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 #themecolors .selector {
     cursor: pointer;
 }
