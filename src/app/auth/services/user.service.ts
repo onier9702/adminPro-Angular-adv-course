@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 import { RegisterFormInterface } from '../../interfaces/register-form.interface';
 import { LoginFormInterface } from '../../interfaces/login-form.interface';
 import { User } from '../../models/user.model';
+import { LoadedUsers } from '../../interfaces/loaded-users.interface';
 
 declare const gapi: any;
 
@@ -25,6 +26,14 @@ export class UserService {
 
   get getUID(): string {
     return this.currentUser.uid || '';
+  }
+
+  get getHeaders(): object {
+    return {
+      headers: {
+        'x-token': this.getToken
+      }
+    }
   }
 
   constructor( 
@@ -130,16 +139,60 @@ export class UserService {
   }
 
   updateUserProfile( data: any ) {
+    const dataToBackend = {
+      ...data,
+      role: this.currentUser.role // to avoid change role who are not admin
+    };
+
     const url = `${this.privateUrl}/users/${this.getUID}`;
-    const token = this.getToken;
-    const headers = new HttpHeaders()
-      .set('x-token', token );
-    return this.http.put( url, data, {headers} )
+    
+    return this.http.put( url, dataToBackend, this.getHeaders )
       .pipe(
         map( resp => resp ),
         catchError( err => of(err))
       );
 
+  }
+
+  loadAllUsersFromDB( since: number = 0, limit: number = 2 ): Observable<LoadedUsers> {
+    const url = `${this.privateUrl}/users/?since=${since}&limit=${limit}`;
+    return this.http.get<LoadedUsers>( url, this.getHeaders )
+      .pipe(
+        map( resp => {
+          // here we need to instance each user came from DB to can show their Image
+          const instancedUsers = resp.users.map( user => new User(user) );
+          return {
+            ok: true,
+            count: resp.count,
+            users: instancedUsers
+          };
+        } ),
+        catchError( err => of(err))
+      );
+  }
+
+  deleteOneUser( uid: string ) {
+    const url = `${this.privateUrl}/users/${uid}`;
+    return this.http.delete( url, this.getHeaders )
+      .pipe(
+        map( resp => resp ),
+        catchError( err => of(err))
+      );
+  }
+
+  changeRole(user: User) {
+    // Just update role field
+    const dataToBackend = {
+      email: user.email,
+      role: user.role
+    };
+
+    const url = `${this.privateUrl}/users/${user.uid}`;
+    return this.http.put( url, dataToBackend, this.getHeaders )
+      .pipe(
+        map( resp => resp ),
+        catchError( err => of(err))
+      );
   }
 
 }

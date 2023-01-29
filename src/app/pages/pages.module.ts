@@ -13,6 +13,9 @@ import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
+import { UsersComponent } from './maintenance/users/users.component';
+import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 
 
 
@@ -25,6 +28,9 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
     PagesComponent,
     AccountSettingsComponent,
     ProfileUserComponent,
+    UsersComponent,
+    DoctorsComponent,
+    HospitalsComponent,
   ],
   imports: [
     CommonModule,

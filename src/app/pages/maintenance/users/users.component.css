@@ -1,0 +1,15 @@
+
+.number-paginator {
+    cursor: pointer;
+}
+
+.number-paginator:hover {
+    background-color: #ffd;
+    color: blue;
+}
+
+.active {
+    background-color: #ffd;
+    color: blue;
+    font-weight: 500;
+}

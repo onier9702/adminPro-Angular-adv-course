@@ -8,6 +8,10 @@ import { Graphic1Component } from './graphic1/graphic1.component';
 import { PagesComponent } from './pages.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { ProgressComponent } from './progress/progress.component';
+// Maintenance
+import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
+import { UsersComponent } from './maintenance/users/users.component';
 
 const routes: Routes = [
   { path: '',
@@ -19,6 +23,10 @@ const routes: Routes = [
       { path: 'graphic1', component: Graphic1Component },
       { path: 'account-settings', component: AccountSettingsComponent },
       { path: 'profile', component: ProfileUserComponent },
+
+      { path: 'users', component: UsersComponent },
+      { path: 'doctors', component: DoctorsComponent },
+      { path: 'hospitals', component: HospitalsComponent },
 
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ]

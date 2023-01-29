@@ -1,0 +1,40 @@
+
+<div class="background-modal-image"
+     [class.hidden]="modalImageService.hideModal">
+    
+    <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel1">Load Image</h4>
+                    <button type="button" class="close" 
+                            data-dismiss="modal" 
+                            aria-label="Close"
+                            (click)="closeModal()">
+                            <span aria-hidden="true">X</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>Choose an Image</h3>
+                    <div class="text-center">
+                        <img *ngIf="!imgTemplatePreview" [src]="modalImageService.img" width="168px" height="180px" class="mb-2" alt="avatar">
+                        <img *ngIf="imgTemplatePreview" [src]="imgTemplatePreview" width="168px" height="180px" class="mb-2" alt="avatar">
+                    </div>
+    
+                    <input type="file" (change)="changeFile($event.target)" >
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" 
+                            class="btn btn-default" 
+                            data-dismiss="modal"
+                            (click)="closeModal()">Close</button>
+                    <button type="button" 
+                            class="btn btn-primary"
+                            (click)="uploadFileSinceModal()">Update Image</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

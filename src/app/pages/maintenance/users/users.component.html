@@ -1,0 +1,95 @@
+
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <input type="text" class="form-control"
+                       placeholder="Search user..."
+                       (keyup)="search(txtSearch.value)"
+                       #txtSearch
+                >
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="row animated fadeIn fast">
+    <div class="col-12">
+        
+        <div class="alert alert-info text-center" role="alert">
+            <h4 class="alert-heading">Loading</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-o">PLease wait</p>
+        </div>
+
+    </div>
+</div>
+<div *ngIf="!loading" class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Total Users ({{ totalUsers }})</h4>
+                <h6 class="card-subtitle">Users registered on app</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w-100">Avatar</th>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th class="w-100">Role</th>
+                                <th class="w-100">Auth</th>
+                                <th class="text-nowrap">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                                <td class="text-center w-100 cursor-pointer" 
+                                    (click)="openModalImage(user)">
+                                    <img [src]="user.urlImage" alt="avat" width="60px" height="60px">
+                                </td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.name}}</td>
+                                <td>
+                                    <select class="form-control w-100" [(ngModel)]="user.role" (change)="changeRole(user)">
+                                        <option value="USER_ROLE">User</option>
+                                        <option value="ADMIN_ROLE">Admin</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <span *ngIf="user.google" class="label label-danger">Google</span>
+                                    <span *ngIf="!user.google" class="label label-info">Email</span>
+                                </td>
+                               
+                                <td class="text-nowrap text-center w-50">
+                                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a (click)="removeUser(user.uid)" class="cursor-pointer" data-toggle="tooltip" data-original-title="Remove">
+                                        <i class="fa fa-close text-danger"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <div *ngIf="!txtSearch.value.length" class="text-center">
+                        <div class="d-flex flex-row">
+                            <i class="fa fa-arrow-left mr-2"></i>
+                            <span (click)="goToNumberPaginator(i)" class="number-paginator mr-2" *ngFor="let num of arrayNumbers, let i = index" >
+                                <span [ngClass]="{active: i === activePosition}" >{{ num }}</span>
+                            </span>
+                            <i class="fa fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!txtSearch.value.length">
+                        <button (click)="changePage('preview')" class="btn btn-secondary">Preview</button>
+                        &nbsp;
+                        <button (click)="changePage('next')" class="btn btn-secondary">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
