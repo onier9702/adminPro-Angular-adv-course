@@ -12,6 +12,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { UsersComponent } from './maintenance/users/users.component';
+import { NewDoctorComponent } from './maintenance/doctors/new-doctor/new-doctor.component';
 
 const routes: Routes = [
   { path: '',
@@ -25,8 +26,9 @@ const routes: Routes = [
       { path: 'profile', component: ProfileUserComponent },
 
       { path: 'users', component: UsersComponent },
-      { path: 'doctors', component: DoctorsComponent },
       { path: 'hospitals', component: HospitalsComponent },
+      { path: 'doctors', component: DoctorsComponent },
+      { path: 'doctor/:id', component: NewDoctorComponent },
 
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ]

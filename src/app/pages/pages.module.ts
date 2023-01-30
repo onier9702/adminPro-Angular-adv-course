@@ -16,6 +16,8 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { UsersComponent } from './maintenance/users/users.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { NewDoctorComponent } from './maintenance/doctors/new-doctor/new-doctor.component';
 
 
 
@@ -31,6 +33,7 @@ import { HospitalsComponent } from './maintenance/hospitals/hospitals.component'
     UsersComponent,
     DoctorsComponent,
     HospitalsComponent,
+    NewDoctorComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +41,8 @@ import { HospitalsComponent } from './maintenance/hospitals/hospitals.component'
     PagesRoutingRoutingModule,
     SharedModule,
     ComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PipesModule
   ]
 })
 export class PagesModule { }
