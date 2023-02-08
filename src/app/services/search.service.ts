@@ -28,6 +28,17 @@ export class SearchService {
     private http: HttpClient,
   ) {}
 
+  globalSearch( term: string ) {
+    const url = `${this.privateUrl}/all/${term}`;
+    return this.http.get<any>( url, this.getHeaders )
+      // .pipe(
+      //   map( (resp: any) => {
+      //     console.log(resp);
+          
+      //   })
+      // )
+  }
+
   searchByCollection( collection: Types, term: string) {
     const url = `${this.privateUrl}/all/${collection}/${term}`;
     return this.http.get<any>( url, this.getHeaders )

@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   constructor( 
       private fb: FormBuilder,
       private userService: UserService,
-      private router: Router
+      private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
 
   submitUser() {
 
-    console.log('form: ', this.registerForm.value);
     if ( this.registerForm.invalid ) {
       return;
     }

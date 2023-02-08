@@ -14,6 +14,9 @@ import { HospitalsComponent } from './maintenance/hospitals/hospitals.component'
 import { UsersComponent } from './maintenance/users/users.component';
 import { NewDoctorComponent } from './maintenance/doctors/new-doctor/new-doctor.component';
 
+import { QuestGeneralComponent } from './quest-general/quest-general.component';
+import { AdminGuard } from '../guards/admin.guard';
+
 const routes: Routes = [
   { path: '',
     component: PagesComponent,
@@ -25,10 +28,17 @@ const routes: Routes = [
       { path: 'account-settings', component: AccountSettingsComponent },
       { path: 'profile', component: ProfileUserComponent },
 
-      { path: 'users', component: UsersComponent },
       { path: 'hospitals', component: HospitalsComponent },
       { path: 'doctors', component: DoctorsComponent },
-      { path: 'doctor/:id', component: NewDoctorComponent },
+      { path: 'doctor/:id', component: NewDoctorComponent, title: 'One-Doctor' },
+      
+      { path: 'search/:term', component: QuestGeneralComponent, title: 'General-Search' },
+      
+      // admin routes
+      { path: 'users', 
+        component: UsersComponent,
+        canActivate: [AdminGuard]
+      },
 
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ]

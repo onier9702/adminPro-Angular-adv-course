@@ -18,6 +18,7 @@ import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { NewDoctorComponent } from './maintenance/doctors/new-doctor/new-doctor.component';
+import { QuestGeneralComponent } from './quest-general/quest-general.component';
 
 
 
@@ -34,6 +35,7 @@ import { NewDoctorComponent } from './maintenance/doctors/new-doctor/new-doctor.
     DoctorsComponent,
     HospitalsComponent,
     NewDoctorComponent,
+    QuestGeneralComponent,
   ],
   imports: [
     CommonModule,

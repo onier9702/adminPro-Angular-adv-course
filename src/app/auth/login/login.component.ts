@@ -52,11 +52,7 @@ export class LoginComponent implements OnInit {
 
     const form = this.loginForm.value;
 
-    console.log('form: ', form);
-    
     if ( form.invalid ) {
-      console.log('invalid');
-      
       return;
     }
 

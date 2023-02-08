@@ -1,0 +1,102 @@
+
+
+
+<div class="row animated fadeIn fast">
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Users</h3>
+
+                <div *ngIf="!users.length" class="alert alert-info text-center" role="alert">
+                    <p class="mb-o">There is not users with that search text</p>
+                </div>
+
+                <div class="table-responsive" *ngIf="users.length">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                                <td>
+                                    <img [src]="user.img! | image: typeUser" alt="avatar" width="50px" height="50px">
+                                </td>
+                                <td>{{user.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Doctors</h3>
+
+                <div *ngIf="!doctors.length" class="alert alert-info text-center" role="alert">
+                    <p class="mb-o">There is not doctors with that search text</p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table" *ngIf="doctors.length">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let doctor of doctors">
+                                <td>
+                                    <img [src]="doctor.img! | image: typeDoctor" alt="avatar" width="50px" height="50px">
+                                </td>
+                                <td>{{doctor.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Hospitals</h3>
+
+                <div *ngIf="!hospitals.length" class="alert alert-info text-center" role="alert">
+                    <p class="mb-o">There is not hospitals with that search text</p>
+                </div>
+
+                <div class="table-responsive" *ngIf="hospitals.length">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitals">
+                                <td>
+                                    <img [src]="hospital.img! | image: typeHospital" alt="avatar" width="50px" height="50px">
+                                </td>
+                                <td>{{hospital.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -13,7 +13,7 @@
                         (submit)="saveDoctor()">
 
                     <div class="form-group row"
-                            *ngIf="doctorSelected">
+                         *ngIf="doctorSelected">
                         <label for="exampleInputuname3" class="col-sm-3 control-label">Photo</label>
                         <div class="col-sm-9">
                             <div class="input-group">
@@ -78,13 +78,14 @@
                 <h4 class="card-title">Hospital</h4>
                 <h6 class="card-subtitle">{{ hospitalSelected.name }}</h6>
 
-                <img [src]="hospitalSelected.img | image:typeHospital" 
-                    class="img-thumbnail"/>
+                <img [src]="hospitalSelected.img | image:typeHospital" class="img-thumbnail"/>
 
             </div>
         </div>
-
     </div>
 </div>
 
-
+<!-- <h3>Form Valid</h3>
+<pre>{{ doctorForm.valid }}</pre>
+<h3>Form Value</h3>
+<pre>{{ doctorForm.value | json }}</pre> -->

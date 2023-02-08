@@ -8,6 +8,8 @@ import { RegisterFormInterface } from '../../interfaces/register-form.interface'
 import { LoginFormInterface } from '../../interfaces/login-form.interface';
 import { User } from '../../models/user.model';
 import { LoadedUsers } from '../../interfaces/loaded-users.interface';
+import { SidebarService } from '../../shared/services/sidebar.service';
+import { Roles } from '../../interfaces/roles.interface';
 
 declare const gapi: any;
 
@@ -28,6 +30,10 @@ export class UserService {
     return this.currentUser.uid || '';
   }
 
+  get getRoles(): Roles {
+    return this.currentUser.role || Roles.USER_ROLE;
+  }
+
   get getHeaders(): object {
     return {
       headers: {
@@ -38,7 +44,8 @@ export class UserService {
 
   constructor( 
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private sidebarService: SidebarService,
   ) {}
 
   googleInit() {
@@ -76,7 +83,7 @@ export class UserService {
     return this.http.get(url, { headers })
       .pipe(
         map( (resp: any) => {
-          console.log(resp);
+          this.sidebarService.menu = resp.menu;
           this.currentUser = new User(resp.user);
           localStorage.setItem('token', resp.token);
           return true;
@@ -91,6 +98,7 @@ export class UserService {
     return this.http.post<any>( url, formData )
       .pipe(
         map( resp => {
+          this.sidebarService.menu = resp.menu;
           localStorage.setItem( 'token', resp.token );
           localStorage.setItem( 'current_user', JSON.stringify( resp.user ) );
           localStorage.setItem( 'uid', resp.user.uid );
@@ -107,6 +115,7 @@ export class UserService {
     return this.http.post<any>( url, formData )
       .pipe(
         map( resp => {
+          this.sidebarService.menu = resp.menu;
           localStorage.setItem( 'token', resp.token );
           localStorage.setItem( 'current_user', JSON.stringify( resp.user ) );
           localStorage.setItem( 'uid', resp.user.uid );
@@ -128,6 +137,7 @@ export class UserService {
     return this.http.post<any>( url, {token} )
       .pipe(
         map( resp => {
+          this.sidebarService.menu = resp.menu;
           localStorage.setItem( 'token', resp.token );
           localStorage.setItem( 'current_user', JSON.stringify( resp.user ) );
           localStorage.setItem( 'uid', resp.user.uid );
@@ -149,7 +159,13 @@ export class UserService {
     return this.http.put( url, dataToBackend, this.getHeaders )
       .pipe(
         map( resp => resp ),
-        catchError( err => of(err))
+        catchError( err => {
+          if ( err.error.msg ) {
+            return of(err.error);
+          } else {
+            return of(err.error.errors.name);
+          }
+        } )
       );
 
   }

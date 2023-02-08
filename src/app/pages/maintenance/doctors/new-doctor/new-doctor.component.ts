@@ -96,21 +96,18 @@ export class NewDoctorComponent implements OnInit {
         id: this.doctorSelected.id
       }
       this.doctorService.updateDoctor( data )
-        .subscribe( resp => {
-          Swal.fire('Updated', `${ name } update correctly`, 'success');
+        .subscribe( () => {
+          Swal.fire('Updated', `${ name } updated correctly`, 'success');
         })
 
     } else {
       // create
-      
       this.doctorService.createDoctor( this.doctorForm.value )
           .subscribe( (resp: any) => {
-            Swal.fire('Creado', `${ name } created correctly`, 'success');
+            Swal.fire('Success', `${ name } created correctly`, 'success');
             this.router.navigateByUrl(`/dashboard/doctor/${ resp.doctor.id }`)
         })
     }
-
-
 
   }
 

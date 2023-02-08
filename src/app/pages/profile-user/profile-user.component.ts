@@ -37,7 +37,6 @@ export class ProfileUserComponent implements OnInit {
     const data = this.profileForm.value;
     // console.log(data);
     this.userService.updateUserProfile( data ).subscribe( (resp) => {
-      console.log({resp});
       
       if ( resp.ok ) {
         const { name, email } = data
@@ -46,7 +45,8 @@ export class ProfileUserComponent implements OnInit {
         Swal.fire( 'Info', 'Excelent update', 'success' );
 
       } else {
-        Swal.fire( 'Warning', resp.error.msg, 'error' );
+        console.log('Error response in component: ', resp);
+        Swal.fire( 'Warning', resp.msg, 'error' );
       }
       
     });
