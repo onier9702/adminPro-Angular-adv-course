@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
     this.renderButton();
     this.createForm();
-    this.staticEmail = JSON.parse(localStorage.getItem('email') || '');
+    this.staticEmail = localStorage.getItem('email') || '';
     if (this.staticEmail.length > 1) {
       this.rememberMe = true;
     }
